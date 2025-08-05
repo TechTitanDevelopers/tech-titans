@@ -1,0 +1,308 @@
+/* ---------- Reset ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(135deg, #0b0f1c, #14213d, #1b263b);
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* ---------- Animated Background ---------- */
+.animated-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.05) 0%,
+    transparent 70%
+  );
+  z-index: -1;
+  animation: bgMove 20s linear infinite;
+}
+@keyframes bgMove {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 1000px 1000px;
+  }
+}
+
+/* ---------- Header ---------- */
+.tech-header {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 183, 255, 0.2),
+    rgba(0, 255, 209, 0.2)
+  );
+  backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+.tech-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 5%;
+}
+.logo {
+  width: 50px;
+  margin-right: 10px;
+}
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+.team-name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #00d4ff, #00ffa6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ---------- Navigation ---------- */
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+.main-nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  padding: 5px 0;
+  transition: color 0.3s ease;
+}
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 2px;
+  background: #00f7ff;
+  transition: width 0.3s ease;
+}
+.main-nav a:hover::after {
+  width: 100%;
+}
+.main-nav a:hover,
+.main-nav a.active {
+  color: #00f7ff;
+}
+
+/* ---------- Hamburger ---------- */
+.mobile-menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #00f7ff;
+}
+@media (max-width: 768px) {
+  .mobile-menu-toggle {
+    display: block;
+  }
+  .main-nav {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 0;
+    display: none;
+    animation: slideDown 0.3s ease forwards;
+  }
+  .main-nav.active {
+    display: flex;
+  }
+}
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Team Map ---------- */
+.team-map {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  overflow: hidden;
+  margin: 20px 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.section-title {
+  text-align: center;
+  margin: 15px 0;
+  font-size: 1.8rem;
+  color: #00f7ff;
+}
+.section-subtitle {
+  text-align: center;
+  font-size: 1rem;
+  color: #bbb;
+}
+
+/* Team Dots */
+.team-dot {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  text-align: center;
+}
+.team-dot .pulse {
+  width: 20px;
+  height: 20px;
+  background: rgba(0, 247, 255, 0.4);
+  border-radius: 50%;
+  animation: pulseAnim 1.5s infinite;
+}
+@keyframes pulseAnim {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+.team-dot .dot {
+  width: 12px;
+  height: 12px;
+  background: #00f7ff;
+  border-radius: 50%;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+}
+.member-info {
+  display: none;
+  background: rgba(0, 0, 0, 0.75);
+  padding: 5px 10px;
+  border-radius: 8px;
+  margin-top: 8px;
+  font-size: 0.8rem;
+}
+.team-dot:hover .member-info {
+  display: block;
+}
+
+/* ---------- Stats ---------- */
+.tech-stats {
+  display: flex;
+  gap: 20px;
+  margin: 20px 0;
+}
+.stat-card {
+  flex: 1;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 20px;
+  border-radius: 12px;
+  transition: transform 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 15px rgba(0, 247, 255, 0.3);
+}
+.stat-icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #00f7ff;
+}
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* ---------- Features ---------- */
+.tech-features {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+.feature-card {
+  flex: 1;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  transition: transform 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 15px rgba(0, 247, 255, 0.3);
+}
+.feature-icon {
+  font-size: 2rem;
+  color: #00f7ff;
+  margin-bottom: 10px;
+}
+
+/* ---------- Footer ---------- */
+.tech-footer {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 40px 5% 20px;
+  backdrop-filter: blur(8px);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+}
+.footer-col h3 {
+  margin-bottom: 15px;
+}
+.social-links a {
+  color: white;
+  margin-right: 10px;
+  font-size: 1.2rem;
+  transition: color 0.3s;
+}
+.social-links a:hover {
+  color: #00f7ff;
+}
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  margin-top: 20px;
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* ---------- Responsive Adjustments ---------- */
+@media (max-width: 768px) {
+  .tech-stats,
+  .tech-features {
+    flex-direction: column;
+  }
+  .team-map {
+    height: 350px;
+  }
+}
