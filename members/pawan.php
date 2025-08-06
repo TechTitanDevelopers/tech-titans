@@ -34,7 +34,7 @@ body{
 .tech-header .container{display:flex;justify-content:space-between;align-items:center;padding:15px 5%;}
 .logo{width:50px;margin-right:10px;}
 .logo-container{display:flex;align-items:center;}
-.team-name{font-size:1.6rem;font-weight:700;background:linear-gradient(90deg,#00d4ff,#00ffa6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.team-name{font-size:1.6rem;font-weight:700;background:linear-gradient(90deg,#00d4ff,#00ffa6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
 .main-nav ul{list-style:none;display:flex;gap:20px;}
 .main-nav a{color:white;text-decoration:none;font-weight:500;transition:color 0.3s;}
 .main-nav a:hover,.main-nav a.active{color:#00f7ff;}

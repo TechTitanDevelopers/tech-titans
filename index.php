@@ -56,20 +56,45 @@ $team_members = [
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animations.css">
+    <style>
+     @keyframes flipLogo {
+        0%   { transform: rotateY(0deg);}
+        50%  { transform: rotateY(180deg);}
+        100% { transform: rotateY(360deg);}
+    }
+    </style>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <!-- Loader Start -->
+  <div id="loader" style="position:fixed;z-index:9999;top:0;left:0;width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;background:rgba(20,20,20,0.95);">
+        <img src="images/favicon.png" alt="Loading..." id="loader-logo" style="width:150px;height:150px;animation:flipLogo 1s linear infinite;">
+    </div>
+    <!-- Loader End -->
     <!-- Animated Background -->
     <div class="animated-bg"></div>
     
     <!-- Header -->
     <header class="tech-header">
         <div class="container">
-            <div class="logo-container">
-                <img src="images/logo.png" alt="Tech Titans Logo" class="logo">
-                <h1 class="team-name">TECH TITANS</h1>
-            </div>
+            <figure class="logo-container" style="perspective: 800px;">
+                <img src="images/favicon.png" alt="Tech Titans Logo" class="logo" id="mainLogo" style="transition: transform 1s;">
+                <figcaption>
+                    <h1 class="team-name">TECH TITANS</h1>
+                </figcaption>
+            </figure>
+            <script>
+            // Rotates the logo every 5 seconds
+            (function() {
+                var logo = document.getElementById('mainLogo');
+                var rotation = 0;
+                setInterval(function() {
+                    rotation += 360;
+                    logo.style.transform = 'rotateY(' + rotation + 'deg)';
+                }, 5000);
+            })();
+            </script>
             <nav class="main-nav">
                 <ul>
                     <li><a href="#" class="active">Home</a></li>
@@ -225,7 +250,34 @@ $team_members = [
 
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <script src="js/script.js"></script>
+    <script>
+    // Ensure loader shows for at least 2 seconds
+    var loaderStart = Date.now();
+    function hideLoaderAfterMinTime() {
+        var loader = document.getElementById('loader');
+        var elapsed = Date.now() - loaderStart;
+        var minTime = 2000; // 2 seconds
+        var remaining = minTime - elapsed;
+        if (remaining > 0) {
+            setTimeout(hideLoader, remaining);
+        } else {
+            hideLoader();
+        }
+        function hideLoader() {
+            if(loader) {
+                loader.style.transition = 'opacity 0.4s';
+                loader.style.opacity = '0';
+                setTimeout(function(){ loader.style.display = 'none'; }, 400);
+            }
+        }
+    }
+    document.addEventListener('readystatechange', function() {
+        if (document.readyState === 'complete') {
+            hideLoaderAfterMinTime();
+        }
+    });
+    </script>
 </body>
 </html>

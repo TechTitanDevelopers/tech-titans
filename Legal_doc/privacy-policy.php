@@ -6,17 +6,40 @@
     <title>Privacy Policy - TechTitan Team</title>
     <link rel="icon" type="image/png" href="../images/favicon.png">
     <link rel="stylesheet" href="../css/style.css">
+    <style>
+     @keyframes flipLogo {
+        0%   { transform: rotateY(0deg);}
+        50%  { transform: rotateY(180deg);}
+        100% { transform: rotateY(360deg);}
+    }
+    </style>
 
 </head>
 <body style="font-family: Arial, sans-serif; background-color: #111; color: white; margin:0; padding:0;">
+    <div id="loader" style="position:fixed;z-index:9999;top:0;left:0;width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;background:rgba(20,20,20,0.95);">
+        <img src="../images/favicon.png" alt="Loading..." id="loader-logo" style="width:90px;height:90px;animation:flipLogo 1s linear infinite;">
+    </div>
 
 <!-- Header -->
     <header class="tech-header">
         <div class="container">
-            <div class="logo-container">
-                <img src="../images/logo.png" alt="Tech Titans Logo" class="logo">
-                <h1 class="team-name">TECH TITANS</h1>
-            </div>
+            <figure class="logo-container" style="perspective: 800px;">
+                <img src="../images/favicon.png" alt="Tech Titans Logo" class="logo" id="mainLogo" style="transition: transform 1s;">
+                <figcaption>
+                    <h1 class="team-name">TECH TITANS</h1>
+                </figcaption>
+            </figure>
+            <script>
+            // Rotates the logo every 5 seconds
+            (function() {
+                var logo = document.getElementById('mainLogo');
+                var rotation = 0;
+                setInterval(function() {
+                    rotation += 360;
+                    logo.style.transform = 'rotateY(' + rotation + 'deg)';
+                }, 5000);
+            })();
+            </script>
             <nav class="main-nav">
                 <ul>
                     <li><a href="../index.php" class="active">Home</a></li>
@@ -168,6 +191,33 @@
         </div>
     </div>
 </footer>
+<script>
+    // Ensure loader shows for at least 2 seconds
+    var loaderStart = Date.now();
+    function hideLoaderAfterMinTime() {
+        var loader = document.getElementById('loader');
+        var elapsed = Date.now() - loaderStart;
+        var minTime = 250; // 0.25 seconds
+        var remaining = minTime - elapsed;
+        if (remaining > 0) {
+            setTimeout(hideLoader, remaining);
+        } else {
+            hideLoader();
+        }
+        function hideLoader() {
+            if(loader) {
+                loader.style.transition = 'opacity 0.4s';
+                loader.style.opacity = '0';
+                setTimeout(function(){ loader.style.display = 'none'; }, 400);
+            }
+        }
+    }
+    document.addEventListener('readystatechange', function() {
+        if (document.readyState === 'complete') {
+            hideLoaderAfterMinTime();
+        }
+    });
+    </script>
 
 </body>
 </html>
