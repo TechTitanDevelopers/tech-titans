@@ -20,7 +20,7 @@ $team_members = [
         'role' => 'Developer',
         'position_x' => rand(10, 90),
         'position_y' => rand(10, 90),
-        'page' => 'member3.php'
+        'page' => 'divyanshu.php'
     ],
     [
         'name' => 'Aaditya Shukla',
